@@ -2,8 +2,6 @@ html {
     height: -webkit-fill-available;    /* per a dispositius mòbils */
 }
 body {
-    flex-direction: row;    /* sobreescriu la declaració flex-direction: column; */
-    flex-flow: row-reverse;    /* disposició de dreta a esquerra, per mostrar el menú a l'esquerra */
     display: flex;    /* tipus de display que ofereix més prestacions que block */
     flex-direction: column;    /* els elements es disposen de dalt cap abaix */
     justify-content: space-between;    /* els elements, separats per espais, ocupen tot l'espai disponibles */
@@ -15,7 +13,7 @@ body {
     background-color: #74ff33;    /* color de fons en format #RRGGBB */
 }
 #superior {
-    display: none;    /* franja superior oculta per optimitzar l'espai */
+    display: flex;    /* franja superior oculta per optimitzar l'espai */
     height: 8vmax;    /* alçària d'un 8% respecte l'alçària de la pantalla */
     justify-content: center;    /* centra els elements en la direcció de disposició */
     align-items: center;    /* centra els elements en la direcció perpendicular a la de disposició */
@@ -34,9 +32,7 @@ body {
     font-size: 4vmax;
 }
 #menu {
-    flex-direction: column;
-        width: 8vmax;
-        height: auto;    /* sobreescriu la declaració height: 8vmax; */
+    height: 8vmax;    /* sobreescriu la declaració height: 8vmax; */
 }
 #menu i{
     flex: 1;    /* cada botó pretén ocupar tot l'espai disponible */
@@ -47,4 +43,18 @@ body {
     background-color: #950E17;
     font-size: 5vmax;
     cursor: pointer;    /* en ordinadors, indica que s'hi pot fer clic */
+}
+@media (orientation: landscape) {
+    body {
+        flex-direction: row;    /* sobreescriu la declaració flex-direction: column; */
+        flex-flow: row-reverse;    /* disposició de dreta a esquerra, per mostrar el menú a l'esquerra */
+    }
+    #superior {
+        display: none;    /* franja superior oculta per optimitzar l'espai */
+    }
+    #menu {
+        flex-direction: column;
+        width: 8vmax;
+        height: auto;    /* sobreescriu la declaració height: 8vmax; */
+    }
 }
