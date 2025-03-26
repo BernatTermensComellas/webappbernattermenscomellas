@@ -26,14 +26,14 @@ body {
     display: none;    /* les seccions s'inicien ocultes, excepte la primera */
 }
 #seccio_0 {
-    display: flex;
+    
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 4vmax;
 }
 #credencials {
-    display: flex;
+    
     flex-direction: column;
     text-align: right;
     font-size: 3vmax;
@@ -47,7 +47,7 @@ body {
     font-size: 3vmax;
 }
 #botons_sessio {
-    display: flex;
+    
     align-items: center;
 }
 #botons_sessio button {    /* els 2 botons dins de botons_sessio */
@@ -61,7 +61,7 @@ body {
     font-size: 4vmax;
 }
 #menu {
-    display: flex;
+    
     height: 8vmax;    /* sobreescriu la declaració height: 8vmax; */
 }
 #menu i{
