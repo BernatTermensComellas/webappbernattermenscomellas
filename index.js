@@ -79,6 +79,9 @@ function tanca_sessio() {
     }
 }
 window.onload = () => { 
+    if (num_boto == 4) {
+        mapa.invalidateSize();
+    }
     let base_de_dades = storage.getItem("base_de_dades");   
     if(base_de_dades == null) {
         indexedDB.open("Dades").onupgradeneeded = event => {   
