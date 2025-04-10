@@ -1,12 +1,13 @@
 function canvia_seccio(num_boto) {
-    const menu = document.getElementById("menu");
-    const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
+    
     if (num_boto == 4) {
         mapa.invalidateSize();
     }
     if (num_boto == 3) {
         mapa.omple_llista();
     }
+    const menu = document.getElementById("menu");
+    const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
     for (let i = 1; i < num_botons; i++) {
         let boto = document.getElementById("boto_" + i);
         let seccio = document.getElementById("seccio_" + i);
