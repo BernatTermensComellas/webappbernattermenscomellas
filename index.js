@@ -1,6 +1,12 @@
 function canvia_seccio(num_boto) {
     const menu = document.getElementById("menu");
     const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
+    if (num_boto == 4) {
+        mapa.invalidateSize();
+    }
+    if (num_boto == 3) {
+        mapa.omple_llista();
+    }
     for (let i = 1; i < num_botons; i++) {
         let boto = document.getElementById("boto_" + i);
         let seccio = document.getElementById("seccio_" + i);
@@ -78,10 +84,7 @@ function tanca_sessio() {
         }
     }
 }
-window.onload = () => { 
-    if (num_boto == 4) {
-        mapa.invalidateSize();
-    }
+window.onload = () => {
     let base_de_dades = storage.getItem("base_de_dades");   
     if(base_de_dades == null) {
         indexedDB.open("Dades").onupgradeneeded = event => {   
