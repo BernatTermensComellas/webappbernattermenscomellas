@@ -92,6 +92,17 @@ window.onload = () => {
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
         }).addTo(mapa);    // s'afegeix la capa al mapa
+    let vegueries = [[41.39, 2.17, "Àmbit metropolità (Barcelona)"],    // llista on cada element és una llista amb els valors de latitud, longitud i nom de vegueria com a elements
+    [42.17, 0.89, "Alt Pirineu i Aran (Tremp)"],
+    [41.12, 1.24, "Camp de Tarragona (Tarragona)"],
+    [41.73, 1.83 ,"Comarques centrals (Manresa)"],
+    [41.98, 2.82, "Comarques gironines (Girona)"],
+    [41.62, 0.62, "Ponent (Lleida)"],
+    [40.81, 0.52, "Terres de l'Ebre (Tortosa)"],
+    [41.35, 1.70, "Penedès (Vilafranca del Penedès"]];
+    for (i in vegueries) {    // per cada element de la llista
+    L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
+    }
     }
     document.getElementById("obturador").addEventListener("change", function() {    // procediment que s'executa quan s'obté el fitxer de la foto realitzada (esdeveniment "change")
         if(this.files[0] != undefined) {    // instruccions que s'executen només si s'obté algun fitxer (només es processa el primer que es rebi)
