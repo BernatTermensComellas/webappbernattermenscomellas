@@ -85,6 +85,10 @@ window.onload = () => {
             event.target.result.createObjectStore("Fotos", {keyPath: "ID", autoIncrement:true}).createIndex("Usuari_index", "Usuari");
         }    // les fotos es desen a la taula "Fotos"
         storage.setItem("base_de_dades","ok");
+        mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
+        }).addTo(mapa);    // s'afegeix la capa al mapa
     }
     document.getElementById("obturador").addEventListener("change", function() {    // procediment que s'executa quan s'obté el fitxer de la foto realitzada (esdeveniment "change")
         if(this.files[0] != undefined) {    // instruccions que s'executen només si s'obté algun fitxer (només es processa el primer que es rebi)
@@ -179,5 +183,15 @@ function omple_llista() {
             }
             document.getElementById("llista_fotos").innerHTML = llista;    // s'ocupa el contenidor "llista_fotos" amb el fragment HTML creat
         }
+    }
+}
+function esborra_foto(id) {
+    if (confirm("Vols esborrar la foto?")) {    // es demana la confirmació a l'usuari
+        indexedDB.open("Dades").onsuccess = event => {   
+                event.target.result.transaction("Fotos", "readwrite").objectStore("Fotos").delete(id).onsuccess = () => {
+                alert("La foto s'ha esborrat.");
+                canvia_seccio(3);    // es recarrega la galeria per tal que ja no mostri la foto esborrada
+            };
+        };
     }
 }
