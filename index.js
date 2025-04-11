@@ -1,12 +1,23 @@
+let validat = false;    // variable que permet saber si hi ha algun usuari validat
+let nom, contrasenya;
+let scriptURL = "https://script.google.com/macros/s/AKfycbwCSO-3s4QaV4DOo-fUiaLh-G54cWF4m-SDY6_dw_SbNxAaHMCcPMh6m8gpsd_MbMpQQw/exec"    // s'ha de substituir la cadena de text per la URL del script
+let geoID = L.marker([latitud, longitud], {icon:icon, zIndexOffset:100, title:"Usuari"}).addTo(mapa);
+let pixels = 24;    // nombre de píxels de la forma
+let mida = 2 * pixels;    // mida de visualització en el mapa
+let ref_vertical = mida / 2;    // distància vertical des del punt superior de la icona fins al punt de la localització
+let color = "yellow";
+let path = "M12,1C10.89,1 10,1.9 10,3C10,4.11 10.89,5 12,5C13.11,5 14,4.11 14,3A2,2 0 0,0 12,1M10,6C9.73,6 9.5,6.11 9.31,6.28H9.3L4,11.59L5.42,13L9,9.41V22H11V15H13V22H15V9.41L18.58,13L20,11.59L14.7,6.28C14.5,6.11 14.27,6 14,6";    // cadena de text de la forma
+let cadenaSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + pixels + ' ' + pixels + '"><path d="' + path + '" fill="' + color + '" /></svg>';    // construcció de l'element SVG
+let icona = encodeURI("data:image/svg+xml," + cadenaSVG);    // codificació d'espais i caràcters especials per formar una URL vàlida
+let icon = L.icon({    // propietats de la icona
+    iconUrl: icona,    // URL de la forma
+    iconSize: [mida, mida],    // mida de la icona
+    iconAnchor: [mida / 2, ref_vertical]    // distàncies (horitzontal i vertical) des del punt superior esquerre de la icona fins al punt de localització
+}); 
+
 function canvia_seccio(num_boto) { 
     const menu = document.getElementById("menu");
-    const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
-    if (num_boto == 4) {
-        mapa.invalidateSize();
-        if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
-            navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
-        }
-    }
+    const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu" 
     for (let i = 1; i < num_botons; i++) {
         let boto = document.getElementById("boto_" + i);
         let seccio = document.getElementById("seccio_" + i);
@@ -28,9 +39,7 @@ function canvia_seccio(num_boto) {
         }
     }
 }
-let validat = false;    // variable que permet saber si hi ha algun usuari validat
-let nom, contrasenya;
-let scriptURL = "https://script.google.com/macros/s/AKfycbwCSO-3s4QaV4DOo-fUiaLh-G54cWF4m-SDY6_dw_SbNxAaHMCcPMh6m8gpsd_MbMpQQw/exec"    // s'ha de substituir la cadena de text per la URL del script
+
 
 function inici_sessio() {
     nom = document.getElementById("nom_usuari").value;    // la propietat "value" d'un quadre de text correspon al text escrit per l'usuari
@@ -218,21 +227,7 @@ function esborra_foto(id) {
         };
     }
 }
-let geoID = L.marker([latitud, longitud], {icon:icon, zIndexOffset:100, title:"Usuari"}).addTo(mapa);
-let pixels = 24;    // nombre de píxels de la forma
-let mida = 2 * pixels;    // mida de visualització en el mapa
-let ref_vertical = mida / 2;    // distància vertical des del punt superior de la icona fins al punt de la localització
-let color = "yellow";
-let path = "M12,1C10.89,1 10,1.9 10,3C10,4.11 10.89,5 12,5C13.11,5 14,4.11 14,3A2,2 0 0,0 12,1M10,6C9.73,6 9.5,6.11 9.31,6.28H9.3L4,11.59L5.42,13L9,9.41V22H11V15H13V22H15V9.41L18.58,13L20,11.59L14.7,6.28C14.5,6.11 14.27,6 14,6";    // cadena de text de la forma
-let cadenaSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + pixels + ' ' + pixels + '"><path d="' + path + '" fill="' + color + '" /></svg>';    // construcció de l'element SVG
-let icona = encodeURI("data:image/svg+xml," + cadenaSVG);    // codificació d'espais i caràcters especials per formar una URL vàlida
-let icon = L.icon({    // propietats de la icona
-    iconUrl: icona,    // URL de la forma
-    iconSize: [mida, mida],    // mida de la icona
-    iconAnchor: [mida / 2, ref_vertical]    // distàncies (horitzontal i vertical) des del punt superior esquerre de la icona fins al punt de localització
-}); 
-
-
+ 
 function geoExit(posicio){
     let latitud = posicio.coords.latitude;
     let longitud = posicio.coords.longitude;
