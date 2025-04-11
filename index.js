@@ -31,6 +31,9 @@ function canvia_seccio(num_boto) {
             boto.style.backgroundColor = "#950E17";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
+        if (num_boto == 3) {
+            mapa.omple_llista();
+        }
         if (num_boto == 4) {
             mapa.invalidateSize();
             if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
@@ -106,10 +109,13 @@ window.onload = () => {
             event.target.result.createObjectStore("Fotos", {keyPath: "ID", autoIncrement:true}).createIndex("Usuari_index", "Usuari");
         }    // les fotos es desen a la taula "Fotos"
         storage.setItem("base_de_dades","ok");
-        mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
-        }).addTo(mapa);    // s'afegeix la capa al mapa
+    }
+    
+    mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
+    }).addTo(mapa);    // s'afegeix la capa al mapa
+    
     let vegueries = [[41.39, 2.17, "Àmbit metropolità (Barcelona)"],    // llista on cada element és una llista amb els valors de latitud, longitud i nom de vegueria com a elements
     [42.17, 0.89, "Alt Pirineu i Aran (Tremp)"],
     [41.12, 1.24, "Camp de Tarragona (Tarragona)"],
@@ -121,7 +127,7 @@ window.onload = () => {
     for (i in vegueries) {    // per cada element de la llista
     L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
     }
-    }
+    
     document.getElementById("obturador").addEventListener("change", function() {    // procediment que s'executa quan s'obté el fitxer de la foto realitzada (esdeveniment "change")
         if(this.files[0] != undefined) {    // instruccions que s'executen només si s'obté algun fitxer (només es processa el primer que es rebi)
             let canvas = document.getElementById("canvas");    // contenidor on es desa temporalment la imatge
