@@ -20,15 +20,15 @@ function canvia_seccio(num_boto) {
             boto.style.backgroundColor = "#950E17";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
-        if (num_boto == 3) {
-            mapa.omple_llista();
+    if (num_boto == 3) {
+        mapa.omple_llista();
+    }
+    if (num_boto == 4) {
+        mapa.invalidateSize();
+        if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
+            navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
         }
-        if (num_boto == 4) {
-            mapa.invalidateSize();
-            if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
-                navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
-            }
-        }
+    }
     }
 }
 
