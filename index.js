@@ -100,10 +100,10 @@ function tanca_sessio() {
         }
     }
  }
-window.onload = () => {
+ window.onload = () => { 
     mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
     }).addTo(mapa);    // s'afegeix la capa al mapa
     let vegueries = [[41.39, 2.17, "Àmbit metropolità (Barcelona)"],    // llista on cada element és una llista amb els valors de latitud, longitud i nom de vegueria com a elements
                  [42.17, 0.89, "Alt Pirineu i Aran (Tremp)"],
@@ -113,17 +113,17 @@ window.onload = () => {
                  [41.62, 0.62, "Ponent (Lleida)"],
                  [40.81, 0.52, "Terres de l'Ebre (Tortosa)"],
                  [41.35, 1.70, "Penedès (Vilafranca del Penedès"]];
-for (i in vegueries) {    // per cada element de la llista
-    L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
-}
-    let base_de_dades = storage.getItem("base_de_dades");
+    for (i in vegueries) {    // per cada element de la llista
+        L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
+    }
+    let base_de_dades = storage.getItem("base_de_dades");   
     if(base_de_dades == null) {
-        indexedDB.open("Dades").onupgradeneeded = event => {
+        indexedDB.open("Dades").onupgradeneeded = event => {   
             event.target.result.createObjectStore("Fotos", {keyPath: "ID", autoIncrement:true}).createIndex("Usuari_index", "Usuari");
         }    // les fotos es desen a la taula "Fotos"
-        storage.setItem("base_de_dades","ok");
-     }
-    document.getElementById("obturador").addEventListener("change", function() {    // procediment que s'executa quan s'obté el fitxer de la foto realitzada (esdeveniment "change")
+        storage.setItem("base_de_dades","ok"); 
+    }
+    document.getElementById("obturador").addEventListener("change", function() {   // procediment que s'executa quan s'obté el fitxer de la foto realitzada (esdeveniment "change")
         if(this.files[0] != undefined) {    // instruccions que s'executen només si s'obté algun fitxer (només es processa el primer que es rebi)
             let canvas = document.getElementById("canvas");    // contenidor on es desa temporalment la imatge
             let context = canvas.getContext("2d");
@@ -131,7 +131,7 @@ for (i in vegueries) {    // per cada element de la llista
             imatge.src = URL.createObjectURL(this.files[0]);    // es crea la imatge a partir del fitxer
             imatge.onload = () => {    // procediment que s'executa un cop la imatge s'ha carregat en el contenidor
                 canvas.width = imatge.width;
-                canvas.height = imatge.height;
+                canvas.height = imatge.height;                
                 context.drawImage(imatge,0,0,imatge.width,imatge.height);    // es "dibuixa" la imatge en el canvas
                 document.getElementById("foto").src = canvas.toDataURL("image/jpeg");    // la imatge es mostra en format jpg
                 document.getElementById("icona_camera").style.display = "none";    // s'oculta la icona que hi havia abans de fer la foto
@@ -139,8 +139,9 @@ for (i in vegueries) {    // per cada element de la llista
             }
         }
     });
+}
+    
 
- }
 function desa_foto() {
     let nou_registre = {    // contingut del nou registre de la base de dades
         Usuari: usuari,    // nom d'usuari
