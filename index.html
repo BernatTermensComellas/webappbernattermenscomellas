@@ -78,6 +78,8 @@
     <div id="seccio_5" class="seccio">
       <div>
         <i id="icona_video" class="fa-solid fa-video"></i>    <!-- icona d'una càmera de vídeo -->
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js">    // s'utilitza la IA de TensorFlow </script>
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script> 
         <div id="webcam-container"></div>    <!-- contenidor de vídeo -->
       </div>
       <div id="reconeixement">    <!-- espai per visualitzar les dades -->
@@ -98,7 +100,7 @@
         <i id="boto_2" class="fa-solid fa-camera" onclick="canvia_seccio(2)"></i>   
         <i id="boto_3" class="fa-solid fa-image" onclick="canvia_seccio(3)"></i>   
         <i id="boto_4" class="fa-solid fa-map" onclick="canvia_seccio(4)"></i>   
-        <i id="boto_5" class="fa-solid fa-brain" onclick="canvia_seccio(5)"></i>   
+        <i id="boto_5" class="fa-solid fa-brain" onclick="canvia_seccio(5)"></i>        
         <i id="boto_6" class="fa-solid fa-chart-pie" onclick="canvia_seccio(6)"></i>   
         <i id="desa" class="fa-solid fa-check" onclick="desa_foto()"></i>
         <i class="fa-solid fa-right-from-bracket"></i>    <!-- tancar sessió -->
