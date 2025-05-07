@@ -10,7 +10,7 @@ body {
     min-height: -webkit-fill-available;    
     margin: 0px;    /* elimina tots els marges del document */
     font-family: sans-serif;    /* un tipus de lletra adient per a llocs web */
-    background-color: #ffffff;    /* color de fons en format #RRGGBB */
+    background-color: #F0F3F0;    /* color de fons en format #RRGGBB */
 }
 #superior {
     display: flex;    /* franja superior oculta per optimitzar l'espai */
@@ -19,7 +19,7 @@ body {
     align-items: center;    /* centra els elements en la direcció perpendicular a la de disposició */
     font-size: 4vmax;    /* mida d'un 4% respecte l'alçària de la pantalla */
     color: white;    /* color del text */
-    background-color: #b18852;    /* color de fons */
+    background-color: #6C896B;    /* color de fons */
 }
 .seccio {
     flex: 1;    /* les seccions ocupen tot l'espai disponible */
@@ -70,7 +70,7 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
-    background-color: #b18852;
+    background-color: #6C896B;
     font-size: 5vmax;
     cursor: pointer;    /* en ordinadors, indica que s'hi pot fer clic */
 }
@@ -83,7 +83,7 @@ body {
 }
 #icona_camera {
     font-size: 40vmin;
-    color: #b18852;
+    color: #6C896B;
 }
 #foto {
     max-width: 60vmin;    /* dimensions màximes per a la prveisualització de les fotos */
@@ -99,7 +99,7 @@ body {
 #div_control i {
     cursor: pointer;
     font-size: 20vmin;    
-    color: green;
+    color: #3F503F;
 }
 #obturador {
     position: absolute;
@@ -114,7 +114,7 @@ body {
     flex: 1;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: #3F503F;
     max-height: 100vh;
     max-height: 100svh;
     max-height: -webkit-fill-available;
@@ -133,7 +133,7 @@ body {
 }
 #llista_titol i {
     font-size: 4vmax;
-    color:#b18852;
+    color:#6C896B;
 }
 #llista_titol i:nth-child(1) {    /* primer <i> (miniatura de la foto) */
     flex: 2;
@@ -202,7 +202,7 @@ body {
 }
 .llista_fila i {    /* icona per esborrar la foto */
     flex: 1;
-    color: #950E17;
+    color: #6C896B;
     font-size: 4vmax !important;
     cursor: pointer;
 }
