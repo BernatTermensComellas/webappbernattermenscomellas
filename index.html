@@ -21,6 +21,10 @@
         <div id="seccio_0" class="seccio">
       <div>
         Inici de sessió    <!-- títol de la secció -->
+        <div id="botons_sessio">
+          <button onclick="inici_sessio()">Inicia sessió</button>
+          <button onclick="nou_usuari()">Nou usuari</button>
+        </div>  
       </div> 
       <div id="credencials">    <!-- contenidor per als quadres de text -->
         <div>
@@ -88,10 +92,10 @@
       </div>
     </div>
     <div id="menu">      
-      <i id="boto1" class="fa-solid fa-house-user"></i>    <!-- secció inicial -->     
-      <i id="boto_2" class="fa-solid fa-camera-retro"></i>    <!-- càmera -->
-      <i id="boto_3" class="fa-solid fa-images"></i>     <!-- galeria -->
-      <i id="boto_4" class="fa-solid fa-location-dot"></i>    <!-- mapa -->
+      <i id="boto1" class="fa-solid fa-house-user" onclick="canvia_seccio(1)"></i>    <!-- secció inicial -->     
+      <i id="boto_2" class="fa-solid fa-camera-retro" onclick="canvia_seccio(2)"></i>    <!-- càmera -->
+      <i id="boto_3" class="fa-solid fa-images" onclick="canvia_seccio(3)"></i>     <!-- galeria -->
+      <i id="boto_4" class="fa-solid fa-location-dot" onclick="canvia_seccio(4)"></i>    <!-- mapa -->
       <i class="fa-solid fa-right-from-bracket"></i>    <!-- tancar sessió -->
     </div>
   </body>
