@@ -18,11 +18,11 @@ function canvia_seccio(num_boto) {
         let seccio = document.getElementById("seccio_" + i);
         if (i == num_boto) {
             boto.style.color = "#3F503F";    // es destaca la secció activa amb el canvi de colors del botó corresponent
-            boto.style.backgroundColor = "#FCDEE0";
+            boto.style.backgroundColor = "#6C896B";
             seccio.style.display = "flex";    // es fa visible la secció activa
         }
         else {
-            boto.style.color = "#F0F3F0";    // colors dels botons de seccions inactives
+            boto.style.color = "#6C896B";    // colors dels botons de seccions inactives
             boto.style.backgroundColor = "#3F503F";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
