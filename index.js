@@ -23,7 +23,7 @@ function canvia_seccio(num_boto) {
         }
         else {
             boto.style.color = "#6C896B";    // colors dels botons de seccions inactives
-            boto.style.backgroundColor = "#6C896B";
+            boto.style.backgroundColor = "#3F503F";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
     }
