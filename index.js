@@ -22,7 +22,7 @@ function canvia_seccio(num_boto) {
             seccio.style.display = "flex";    // es fa visible la secció activa
         }
         else {
-            boto.style.color = "#6C896B";    // colors dels botons de seccions inactives
+            boto.style.color = "white";    // colors dels botons de seccions inactives
             boto.style.backgroundColor = "#3F503F";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
