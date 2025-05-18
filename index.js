@@ -1,47 +1,44 @@
 let validat = false;    // variable que permet saber si hi ha algun usuari validat
 let nom, contrasenya;
-let scriptURL = "https://script.google.com/macros/s/AKfycbwCSO-3s4QaV4DOo-fUiaLh-G54cWF4m-SDY6_dw_SbNxAaHMCcPMh6m8gpsd_MbMpQQw/exec"    // s'ha de substituir la cadena de text per la URL del script
+let scriptURL = "https://script.google.com/macros/s/AKfycbzZmt6tt-4-EBVbDOeoz1eTS6aw2Dfpd74hXBmQK93ydk0C9CGaSDPgIkwmVz7aDppIgw/exec"    // s'ha de substituir la cadena de text per la URL del script
 let model, webcam, prediccions, maxPrediccions;
 let canvas_creat = false;
 let diagrama;
 let valors = [[],[]];
-let usuari;
-let geoID;
-let seccio_origen;
-let storage = localStorage;
-
-function canvia_seccio(num_boto) { 
+ 
+function canvia_seccio(num_boto) {
+    
     const menu = document.getElementById("menu");
-    const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu" 
+    const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
     for (let i = 1; i < num_botons; i++) {
         let boto = document.getElementById("boto_" + i);
         let seccio = document.getElementById("seccio_" + i);
         if (i == num_boto) {
-            boto.style.color = "#3F503F";    // es destaca la secció activa amb el canvi de colors del botó corresponent
-            boto.style.backgroundColor = "#6C896B";
+            boto.style.color = "#4d0d44";    // es destaca la secció activa amb el canvi de colors del botó corresponent
+            boto.style.backgroundColor = "#e0d2e5";
             seccio.style.display = "flex";    // es fa visible la secció activa
         }
         else {
             boto.style.color = "white";    // colors dels botons de seccions inactives
-            boto.style.backgroundColor = "#6C896B";
+            boto.style.backgroundColor = "#4d0d44";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
-    }
-    if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
-        omple_llista();
-    }
-    if (num_boto == 4) {
-        mapa.invalidateSize();
-        if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
-            navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
+        if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
+            omple_llista();
         }
-    if (num_boto == 6) {
-        mostra_diagrama();
-         }
+        if (num_boto == 4) {
+            mapa.invalidateSize();
+            if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
+                navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
+            }
+        }
+        if (num_boto == 6) {
+            mostra_diagrama();
+        }
     }
+    
 }
-
-
+ 
 function inici_sessio() {
     nom = document.getElementById("nom_usuari").value;    // la propietat "value" d'un quadre de text correspon al text escrit per l'usuari
     contrasenya = document.getElementById("contrasenya").value;
@@ -59,12 +56,14 @@ function inici_sessio() {
                 inicia_sessio();    // usuari validat, s'executen les instruccions del procediment "inicia_sessio"
             }
         });    
-    }
+}
+
 function inicia_sessio() {
     validat = true;    // usuari validat
     document.getElementById("seccio_0").style.display = "none";    // s'oculta la secció de validació d'usuaris
     canvia_seccio(1);    // es mostra la secció 1
 }
+
 function nou_usuari() {
     nom = document.getElementById("nom_usuari").value;
     contrasenya = document.getElementById("contrasenya").value;
@@ -92,6 +91,7 @@ function nou_usuari() {
             }
         });
 }
+
 function tanca_sessio() {
     if (validat) {
         if (confirm("Vols tancar la sessió?")) {    // S'ha respost "Sí"
@@ -99,10 +99,11 @@ function tanca_sessio() {
             location.reload();    // recàrrega de la pàgina, es reinicialitzen totes les variables
         }
     }
- }
- window.onload = () => { 
+}
+
+window.onload = () => { 
     mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
     }).addTo(mapa);    // s'afegeix la capa al mapa
     let vegueries = [[41.39, 2.17, "Àmbit metropolità (Barcelona)"],    // llista on cada element és una llista amb els valors de latitud, longitud i nom de vegueria com a elements
@@ -113,17 +114,19 @@ function tanca_sessio() {
                  [41.62, 0.62, "Ponent (Lleida)"],
                  [40.81, 0.52, "Terres de l'Ebre (Tortosa)"],
                  [41.35, 1.70, "Penedès (Vilafranca del Penedès"]];
-    for (i in vegueries) {    // per cada element de la llista
-        L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
-    }
+for (i in vegueries) {    // per cada element de la llista
+    L.marker([vegueries[i][0], vegueries[i][1]],{title:vegueries[i][2]}).addTo(mapa);
+}
+
+
     let base_de_dades = storage.getItem("base_de_dades");   
     if(base_de_dades == null) {
         indexedDB.open("Dades").onupgradeneeded = event => {   
             event.target.result.createObjectStore("Fotos", {keyPath: "ID", autoIncrement:true}).createIndex("Usuari_index", "Usuari");
         }    // les fotos es desen a la taula "Fotos"
-        storage.setItem("base_de_dades","ok"); 
+        storage.setItem("base_de_dades","ok");
     }
-    document.getElementById("obturador").addEventListener("change", function() {   // procediment que s'executa quan s'obté el fitxer de la foto realitzada (esdeveniment "change")
+    document.getElementById("obturador").addEventListener("change", function() {    // procediment que s'executa quan s'obté el fitxer de la foto realitzada (esdeveniment "change")
         if(this.files[0] != undefined) {    // instruccions que s'executen només si s'obté algun fitxer (només es processa el primer que es rebi)
             let canvas = document.getElementById("canvas");    // contenidor on es desa temporalment la imatge
             let context = canvas.getContext("2d");
@@ -139,9 +142,9 @@ function tanca_sessio() {
             }
         }
     });
-}
     
-
+}
+ 
 function desa_foto() {
     let nou_registre = {    // contingut del nou registre de la base de dades
         Usuari: usuari,    // nom d'usuari
@@ -154,7 +157,8 @@ function desa_foto() {
             alert("La foto s'ha desat correctament.");    
         };
     };
- }
+}
+
 function mostra_foto(id) {
     let canvas = document.getElementById("canvas");
     let context = canvas.getContext("2d");
@@ -190,6 +194,7 @@ function mostra_foto(id) {
     document.getElementById("menu").style.display = "none";    // s'oculta el menú
     document.getElementById("div_gran").style.display = "flex";    // es mostra el contenidor de la foto a pantalla completa
 }
+
 function retorn_a_seccio() {
     document.getElementById("superior").classList.remove("ocult");    // s'elimina la classe provisional del contenidor superior
     document.getElementById("menu").style.display = "flex";    // es mostra el menú
@@ -200,6 +205,7 @@ function retorn_a_seccio() {
         document.getElementById("seccio_3").style.display = "flex";
     }
 }
+
 function omple_llista() {
     let llista = '';
     indexedDB.open("Dades").onsuccess = event => {
@@ -220,6 +226,7 @@ function omple_llista() {
         }
     }
 }
+
 function esborra_foto(id) {
     if (confirm("Vols esborrar la foto?")) {    // es demana la confirmació a l'usuari
         indexedDB.open("Dades").onsuccess = event => {   
@@ -230,31 +237,32 @@ function esborra_foto(id) {
         };
     }
 }
- 
+
 function geoExit(posicio){
     let latitud = posicio.coords.latitude;
     let longitud = posicio.coords.longitude;
+    
     let pixels = 24;    // nombre de píxels de la forma
     let mida = 2 * pixels;    // mida de visualització en el mapa
     let ref_vertical = mida / 2;    // distància vertical des del punt superior de la icona fins al punt de la localització
-    let color = "blue";
-    let path = "M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z";    // cadena de text de la forma
+    let color = "pink";
+    let path = "M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6A2,2 0 0,1 10,4A2,2 0 0,1 12,2M10.5,22V16H7.5L10.09,8.41C10.34,7.59 11.1,7 12,7C12.9,7 13.66,7.59 13.91,8.41L16.5,16H13.5V22H10.5Z";    // cadena de text de la forma
     let cadenaSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + pixels + ' ' + pixels + '"><path d="' + path + '" fill="' + color + '" /></svg>';    // construcció de l'element SVG
     let icona = encodeURI("data:image/svg+xml," + cadenaSVG);    // codificació d'espais i caràcters especials per formar una URL vàlida
     let icon = L.icon({    // propietats de la icona
     iconUrl: icona,    // URL de la forma
     iconSize: [mida, mida],    // mida de la icona
     iconAnchor: [mida / 2, ref_vertical]    // distàncies (horitzontal i vertical) des del punt superior esquerre de la icona fins al punt de localització
-    }); 
+}); 
     if (typeof geoID === "undefined") {    
-        geoID = L.marker([latitud, longitud], {icon:icon, zIndexOffset:100, title:"Usuari"}).addTo(mapa);    // es defineix el marcador  geoID i es situa per sobre dels altres
+        geoID = L.marker([latitud, longitud], {zIndexOffset:100, title:"Usuari"}).addTo(mapa);
     } else {    // primeres dades de localització, es crea el marcador d'usuari 
-        geoID.setLatLng([latitud, longitud]);    // actualització de la posició del marcador d'usuari en el mapa
+        geoID = L.marker([latitud, longitud], {icon:icon, zIndexOffset:100, title:"Usuari"}).addTo(mapa);    // actualització de la posició del marcador d'usuari en el mapa
     }
- }
+}
 
- async function inicia_video() {
-    const codi_model = "*********"    // substitueix els asteriscs pel codi del model d'IA que vas crear en una activitat anterior
+async function inicia_video() {
+    const codi_model = "JwBUbg1n7"    // substitueix els asteriscs pel codi del model d'IA que vas crear en una activitat anterior
     const tmURL = "https://teachablemachine.withgoogle.com/models/" + codi_model;
     const modelURL = tmURL + "/model.json";
     const metadataURL = tmURL + "/metadata.json";
