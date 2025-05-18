@@ -1,6 +1,6 @@
 let validat = false;    // variable que permet saber si hi ha algun usuari validat
 let nom, contrasenya;
-let scriptURL = "https://script.google.com/macros/s/AKfycbzZmt6tt-4-EBVbDOeoz1eTS6aw2Dfpd74hXBmQK93ydk0C9CGaSDPgIkwmVz7aDppIgw/exec"    // s'ha de substituir la cadena de text per la URL del script
+let scriptURL = "https://script.google.com/macros/s/AKfycbwCSO-3s4QaV4DOo-fUiaLh-G54cWF4m-SDY6_dw_SbNxAaHMCcPMh6m8gpsd_MbMpQQw/exec"    // s'ha de substituir la cadena de text per la URL del script
 let model, webcam, prediccions, maxPrediccions;
 let canvas_creat = false;
 let diagrama;
@@ -14,13 +14,13 @@ function canvia_seccio(num_boto) {
         let boto = document.getElementById("boto_" + i);
         let seccio = document.getElementById("seccio_" + i);
         if (i == num_boto) {
-            boto.style.color = "#4d0d44";    // es destaca la secció activa amb el canvi de colors del botó corresponent
-            boto.style.backgroundColor = "#e0d2e5";
+            boto.style.color = "#3F503F";    // es destaca la secció activa amb el canvi de colors del botó corresponent
+            boto.style.backgroundColor = "#6C896B";
             seccio.style.display = "flex";    // es fa visible la secció activa
         }
         else {
             boto.style.color = "white";    // colors dels botons de seccions inactives
-            boto.style.backgroundColor = "#4d0d44";
+            boto.style.backgroundColor = "#6C896B";
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
         if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
@@ -316,7 +316,7 @@ function mostra_diagrama() {
 }
 
 function peticio() {
-    const canal = "2897201";    // s'han de substituir els asteriscs pel codi del canal
+    const canal = "*******";    // s'han de substituir els asteriscs pel codi del canal, no en tinc
     const camp = "1";    // el camp 1 (nivell de llum)
     const max_dades = 10;    // nombre de valors que es volen visualitzar simultàniament
     const ts_url = "https://api.thingspeak.com/channels/" + canal + "/fields/" + camp + "/last.json"    // url que sol·licita el valor més recent

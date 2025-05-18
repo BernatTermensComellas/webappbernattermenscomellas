@@ -9,8 +9,8 @@ body {
     min-height: 100svh;    /* per a navegadors on la declaració anterior no és precisa */
     min-height: -webkit-fill-available;    
     margin: 0px;    /* elimina tots els marges del document */
-    font-family: Candara;    /* un tipus de lletra adient per a llocs web */
-    background-color: #D2B4DE;    /* color de fons en format #RRGGBB */
+    font-family: 'Times New Roman', Times, serif;    /* un tipus de lletra adient per a llocs web */
+    background-color: #F0F3F0;    /* color de fons en format #RRGGBB */
 }
 #superior {
     display: flex;
@@ -19,7 +19,7 @@ body {
     align-items: center;    /* centra els elements en la direcció perpendicular a la de disposició */
     font-size: 4vmax;    /* mida d'un 4% respecte l'alçària de la pantalla */
     color: white;    /* color del text */
-    background-color: #4d0d44;    /* color de fons */
+    background-color: #6C896B;    /* color de fons */
     .ocult {
         display: none !important;    /* amb prioritat sobre les declaracions condicionals segons l'orientació */
     }
@@ -42,8 +42,8 @@ body {
     display: flex;    /* contenidor flex on centrar-hi la icona */
     justify-content: center;
     align-items: center;
-    color: white;
-    background-color: #4d0d44;
+    color: #F0F3F0;
+    background-color: #6C896B;
     font-size: 5vmax;
     cursor: pointer;    /* en ordinadors, indica que s'hi pot fer clic */
 }
@@ -86,7 +86,7 @@ body {
 }
 #icona_camera {
     font-size: 40vmin;
-    color: #540e95;
+    color: #6C896B;
 }
 #foto {
     max-width: 60vmin;    /* dimensions màximes per a la prveisualització de les fotos */
@@ -102,7 +102,7 @@ body {
 #div_control i {
     cursor: pointer;
     font-size: 20vmin;    
-    color: rgb(12, 46, 185);
+    color: #3F503F;
 }
 #obturador {
     position: absolute;
@@ -117,7 +117,7 @@ body {
     flex: 1;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: #3F503F;
     max-height: 100vh;
     max-height: 100svh;
     max-height: -webkit-fill-available;
@@ -136,7 +136,7 @@ body {
 }
 #llista_titol i {
     font-size: 4vmax;
-    color:#963fb3;
+    color:#6C896B;
 }
 #llista_titol i:nth-child(1) {    /* primer <i> (miniatura de la foto) */
     flex: 2;
@@ -203,7 +203,7 @@ body {
 }
 .llista_fila i {    /* icona per esborrar la foto */
     flex: 1;
-    color: #4d0d44;
+    color: #6C896B;
     font-size: 4vmax !important;
     cursor: pointer;
 }
