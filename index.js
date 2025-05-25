@@ -93,12 +93,14 @@ function nou_usuari() {
 
 function tanca_sessio() {
     if (validat) {
-        if (confirm("Vols tancar la sessió?")) {    // S'ha respost "Sí"
+        let vull_sortir = window.confirm("Vols tancar la sessió?");
+        if (vull_sortir) {
             storage.setItem("usuari", "");
-            location.reload();    // recàrrega de la pàgina, es reinicialitzen totes les variables
+            location.reload();
         }
     }
 }
+
 
 window.onload = () => { 
     mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
